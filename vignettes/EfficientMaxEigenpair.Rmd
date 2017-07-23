@@ -6,6 +6,7 @@ author:
 - Mu-Fa Chen
 - Assisted by Xiao-Jun Mao
 date: '`r Sys.Date()`'
+bibliography: efficient.bib
 output:
   pdf_document:
     highlight: kate
