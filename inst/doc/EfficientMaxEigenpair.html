@@ -204,6 +204,27 @@ hr {
 </head>
 
 <body>
+<!--
+  %\VignetteIndexEntry{EfficientMaxEigenpair Vignette} 
+  %\VignetteEngine{knitr::knitr}
+  %\VignetteEncoding{UTF-8}
+-->
+
+<hr/>
+
+<p>title: &ldquo;EfficientMaxEigenpair Vignette&rdquo;
+header-includes:
+    - \usepackage{url}
+author:</p>
+
+<ul>
+<li>Mu-Fa Chen</li>
+<li>Assisted by Xiao-Jun Mao
+date: &#39;2017-08-02&#39;
+output: html_document
+&mdash;</li>
+</ul>
+
 <p><code>EfficientMaxEigenpair</code> is a package for computing the maximal eigenpair of the matrices with non-negative off-diagonal elements (or as a dual, the minimal eigenvalue of the matrices with non-positive off-diagonal elements). This vignette is a simple guide to using the package. All the algorithms and examples provided in this vignette are available in the paper &ldquo;Efficient initials for computing maximal eigenpair&rdquo; by Mu-Fa Chen. The paper <a href="http://math0.bnu.edu.cn/%7Echenmf/">Chen (2016)</a> is now included in the Vol 4, in the middle of the website:
 \begin{center}
 \url{<a href="http://math0.bnu.edu.cn/%7Echenmf/">http://math0.bnu.edu.cn/~chenmf/</a>}
@@ -339,6 +360,12 @@ eff.ini.maxeig.general(A, improved = T, xi = 0.65, digit.thresh = 4)$z
 <ul>
 <li>The precise level used for output results is set to be <code>digit.thresh = 6</code> which implies       1e-6 without any special requirement. Same for the following three algorithms and the         examples shown in this vignette.</li>
 <li>This algorithm works not only for tridiagonal matrix, but also for diagonally dominant matrices. In the latter case, one simply picks up the diagonal part from the original one, as illustrated by the last part of Example 17 in the paper <a href="http://math0.bnu.edu.cn/%7Echenmf/">Chen (2016)</a>. The improved algorithm below Example 10 in the cited paper is recommended.</li>
+<li>Note:
+
+<ul>
+<li><code>eff.ini.maxeig.tri()</code> has been modified and is simplified based on several papers completed in 2017. </li>
+<li>The construction of the sequences \(A_{j}\) and \(B_{j}\) in solving the linear equation is not trivial. This is especially meaningful when going to the large scale matrices.</li>
+</ul></li>
 </ul></li>
 <li><p><code>eff.ini.maxeig.general()</code>: Calculate the maximal eigenpair for the general matrix with non-negative off-diagonal elements. Let the general matrix \(A=(a_{ij}:i,j\in E)\).</p>
 

@@ -1,4 +1,4 @@
-3b072cdffcf8bbb74a48f02582081415 *DESCRIPTION
+6d0caef5106ee830f01e0b16d7d9c03c *DESCRIPTION
 0f1c47511a8a5bd9cd584b9e77002f37 *LICENSE
 b42770f73a842ebcdd5e1ff32ecf5b47 *NAMESPACE
 b243d8b0c0c79d7601e525927c7bae41 *R/EfficientMaxEigenpair.R
@@ -8,11 +8,11 @@ c2a4565485e3027720935eccb21012b8 *R/eff.ini.seceig.general.R
 2c694380b0e5814657551525e39300df *R/eff.ini.seceig.tri.R
 69b8da270f78ad789819b390bff43208 *R/ray.quot.R
 6bbc5bcb0e9f388c042f9592242e6705 *R/tridiag.R
-9d6d633dd0c366c346f017e33d571011 *README.md
-26807802318642240e5f1180a9564f73 *build/vignette.rds
+399e3d9be31f34af4d9e829e85433110 *README.md
+de6cddef54886d57b180bdbdd9056c9d *build/vignette.rds
 69812d20ab61e544755864b73d1e143a *inst/doc/EfficientMaxEigenpair.R
-6bdfe232968f925e1f2101973a52e1a0 *inst/doc/EfficientMaxEigenpair.Rmd
-11458b8f91b3a069dbd6c2f9d7fae107 *inst/doc/EfficientMaxEigenpair.pdf
+7475fe85972677a28314e0f2ec68319b *inst/doc/EfficientMaxEigenpair.Rmd
+68984a592e6ad78364ad091b28e6000e *inst/doc/EfficientMaxEigenpair.html
 bf5f1e2d78125cf2fe5e23f56618d0ad *man/EfficientMaxEigenpair.Rd
 6ded5e2f0b11195039065ea2ddc60633 *man/eff.ini.maxeig.general.Rd
 907d21d3de46c1aab79845e4d61a9763 *man/eff.ini.maxeig.tri.Rd
@@ -20,5 +20,4 @@ bf5f1e2d78125cf2fe5e23f56618d0ad *man/EfficientMaxEigenpair.Rd
 3651211528fcbcab85a3e391e32291af *man/eff.ini.seceig.tri.Rd
 a26e4e0986691c196d4b56be555a88a4 *man/ray.quot.Rd
 723c25932737ff1e9ae37a6344781ee0 *man/tridiag.Rd
-6bdfe232968f925e1f2101973a52e1a0 *vignettes/EfficientMaxEigenpair.Rmd
-7fa3523f0d1e7373f224bc5da6a0e499 *vignettes/EfficientMaxEigenpair.html
+7475fe85972677a28314e0f2ec68319b *vignettes/EfficientMaxEigenpair.Rmd
