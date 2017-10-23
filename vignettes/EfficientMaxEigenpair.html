@@ -1,0 +1,920 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+
+<title>The tridiagonal case (Example 7 in <a href="http://math0.bnu.edu.cn/%7Echenmf/">Chen (2016)</a>)</title>
+
+<script type="text/javascript">
+window.onload = function() {
+  var imgs = document.getElementsByTagName('img'), i, img;
+  for (i = 0; i < imgs.length; i++) {
+    img = imgs[i];
+    // center an image if it is the only element of its parent
+    if (img.parentElement.childElementCount === 1)
+      img.parentElement.style.textAlign = 'center';
+  }
+};
+</script>
+
+<!-- Styles for R syntax highlighter -->
+<style type="text/css">
+   pre .operator,
+   pre .paren {
+     color: rgb(104, 118, 135)
+   }
+
+   pre .literal {
+     color: #990073
+   }
+
+   pre .number {
+     color: #099;
+   }
+
+   pre .comment {
+     color: #998;
+     font-style: italic
+   }
+
+   pre .keyword {
+     color: #900;
+     font-weight: bold
+   }
+
+   pre .identifier {
+     color: rgb(0, 0, 0);
+   }
+
+   pre .string {
+     color: #d14;
+   }
+</style>
+
+<!-- R syntax highlighter -->
+<script type="text/javascript">
+var hljs=new function(){function m(p){return p.replace(/&/gm,"&amp;").replace(/</gm,"&lt;")}function f(r,q,p){return RegExp(q,"m"+(r.cI?"i":"")+(p?"g":""))}function b(r){for(var p=0;p<r.childNodes.length;p++){var q=r.childNodes[p];if(q.nodeName=="CODE"){return q}if(!(q.nodeType==3&&q.nodeValue.match(/\s+/))){break}}}function h(t,s){var p="";for(var r=0;r<t.childNodes.length;r++){if(t.childNodes[r].nodeType==3){var q=t.childNodes[r].nodeValue;if(s){q=q.replace(/\n/g,"")}p+=q}else{if(t.childNodes[r].nodeName=="BR"){p+="\n"}else{p+=h(t.childNodes[r])}}}if(/MSIE [678]/.test(navigator.userAgent)){p=p.replace(/\r/g,"\n")}return p}function a(s){var r=s.className.split(/\s+/);r=r.concat(s.parentNode.className.split(/\s+/));for(var q=0;q<r.length;q++){var p=r[q].replace(/^language-/,"");if(e[p]){return p}}}function c(q){var p=[];(function(s,t){for(var r=0;r<s.childNodes.length;r++){if(s.childNodes[r].nodeType==3){t+=s.childNodes[r].nodeValue.length}else{if(s.childNodes[r].nodeName=="BR"){t+=1}else{if(s.childNodes[r].nodeType==1){p.push({event:"start",offset:t,node:s.childNodes[r]});t=arguments.callee(s.childNodes[r],t);p.push({event:"stop",offset:t,node:s.childNodes[r]})}}}}return t})(q,0);return p}function k(y,w,x){var q=0;var z="";var s=[];function u(){if(y.length&&w.length){if(y[0].offset!=w[0].offset){return(y[0].offset<w[0].offset)?y:w}else{return w[0].event=="start"?y:w}}else{return y.length?y:w}}function t(D){var A="<"+D.nodeName.toLowerCase();for(var B=0;B<D.attributes.length;B++){var C=D.attributes[B];A+=" "+C.nodeName.toLowerCase();if(C.value!==undefined&&C.value!==false&&C.value!==null){A+='="'+m(C.value)+'"'}}return A+">"}while(y.length||w.length){var v=u().splice(0,1)[0];z+=m(x.substr(q,v.offset-q));q=v.offset;if(v.event=="start"){z+=t(v.node);s.push(v.node)}else{if(v.event=="stop"){var p,r=s.length;do{r--;p=s[r];z+=("</"+p.nodeName.toLowerCase()+">")}while(p!=v.node);s.splice(r,1);while(r<s.length){z+=t(s[r]);r++}}}}return z+m(x.substr(q))}function j(){function q(x,y,v){if(x.compiled){return}var u;var s=[];if(x.k){x.lR=f(y,x.l||hljs.IR,true);for(var w in x.k){if(!x.k.hasOwnProperty(w)){continue}if(x.k[w] instanceof Object){u=x.k[w]}else{u=x.k;w="keyword"}for(var r in u){if(!u.hasOwnProperty(r)){continue}x.k[r]=[w,u[r]];s.push(r)}}}if(!v){if(x.bWK){x.b="\\b("+s.join("|")+")\\s"}x.bR=f(y,x.b?x.b:"\\B|\\b");if(!x.e&&!x.eW){x.e="\\B|\\b"}if(x.e){x.eR=f(y,x.e)}}if(x.i){x.iR=f(y,x.i)}if(x.r===undefined){x.r=1}if(!x.c){x.c=[]}x.compiled=true;for(var t=0;t<x.c.length;t++){if(x.c[t]=="self"){x.c[t]=x}q(x.c[t],y,false)}if(x.starts){q(x.starts,y,false)}}for(var p in e){if(!e.hasOwnProperty(p)){continue}q(e[p].dM,e[p],true)}}function d(B,C){if(!j.called){j();j.called=true}function q(r,M){for(var L=0;L<M.c.length;L++){if((M.c[L].bR.exec(r)||[null])[0]==r){return M.c[L]}}}function v(L,r){if(D[L].e&&D[L].eR.test(r)){return 1}if(D[L].eW){var M=v(L-1,r);return M?M+1:0}return 0}function w(r,L){return L.i&&L.iR.test(r)}function K(N,O){var M=[];for(var L=0;L<N.c.length;L++){M.push(N.c[L].b)}var r=D.length-1;do{if(D[r].e){M.push(D[r].e)}r--}while(D[r+1].eW);if(N.i){M.push(N.i)}return f(O,M.join("|"),true)}function p(M,L){var N=D[D.length-1];if(!N.t){N.t=K(N,E)}N.t.lastIndex=L;var r=N.t.exec(M);return r?[M.substr(L,r.index-L),r[0],false]:[M.substr(L),"",true]}function z(N,r){var L=E.cI?r[0].toLowerCase():r[0];var M=N.k[L];if(M&&M instanceof Array){return M}return false}function F(L,P){L=m(L);if(!P.k){return L}var r="";var O=0;P.lR.lastIndex=0;var M=P.lR.exec(L);while(M){r+=L.substr(O,M.index-O);var N=z(P,M);if(N){x+=N[1];r+='<span class="'+N[0]+'">'+M[0]+"</span>"}else{r+=M[0]}O=P.lR.lastIndex;M=P.lR.exec(L)}return r+L.substr(O,L.length-O)}function J(L,M){if(M.sL&&e[M.sL]){var r=d(M.sL,L);x+=r.keyword_count;return r.value}else{return F(L,M)}}function I(M,r){var L=M.cN?'<span class="'+M.cN+'">':"";if(M.rB){y+=L;M.buffer=""}else{if(M.eB){y+=m(r)+L;M.buffer=""}else{y+=L;M.buffer=r}}D.push(M);A+=M.r}function G(N,M,Q){var R=D[D.length-1];if(Q){y+=J(R.buffer+N,R);return false}var P=q(M,R);if(P){y+=J(R.buffer+N,R);I(P,M);return P.rB}var L=v(D.length-1,M);if(L){var O=R.cN?"</span>":"";if(R.rE){y+=J(R.buffer+N,R)+O}else{if(R.eE){y+=J(R.buffer+N,R)+O+m(M)}else{y+=J(R.buffer+N+M,R)+O}}while(L>1){O=D[D.length-2].cN?"</span>":"";y+=O;L--;D.length--}var r=D[D.length-1];D.length--;D[D.length-1].buffer="";if(r.starts){I(r.starts,"")}return R.rE}if(w(M,R)){throw"Illegal"}}var E=e[B];var D=[E.dM];var A=0;var x=0;var y="";try{var s,u=0;E.dM.buffer="";do{s=p(C,u);var t=G(s[0],s[1],s[2]);u+=s[0].length;if(!t){u+=s[1].length}}while(!s[2]);if(D.length>1){throw"Illegal"}return{r:A,keyword_count:x,value:y}}catch(H){if(H=="Illegal"){return{r:0,keyword_count:0,value:m(C)}}else{throw H}}}function g(t){var p={keyword_count:0,r:0,value:m(t)};var r=p;for(var q in e){if(!e.hasOwnProperty(q)){continue}var s=d(q,t);s.language=q;if(s.keyword_count+s.r>r.keyword_count+r.r){r=s}if(s.keyword_count+s.r>p.keyword_count+p.r){r=p;p=s}}if(r.language){p.second_best=r}return p}function i(r,q,p){if(q){r=r.replace(/^((<[^>]+>|\t)+)/gm,function(t,w,v,u){return w.replace(/\t/g,q)})}if(p){r=r.replace(/\n/g,"<br>")}return r}function n(t,w,r){var x=h(t,r);var v=a(t);var y,s;if(v){y=d(v,x)}else{return}var q=c(t);if(q.length){s=document.createElement("pre");s.innerHTML=y.value;y.value=k(q,c(s),x)}y.value=i(y.value,w,r);var u=t.className;if(!u.match("(\\s|^)(language-)?"+v+"(\\s|$)")){u=u?(u+" "+v):v}if(/MSIE [678]/.test(navigator.userAgent)&&t.tagName=="CODE"&&t.parentNode.tagName=="PRE"){s=t.parentNode;var p=document.createElement("div");p.innerHTML="<pre><code>"+y.value+"</code></pre>";t=p.firstChild.firstChild;p.firstChild.cN=s.cN;s.parentNode.replaceChild(p.firstChild,s)}else{t.innerHTML=y.value}t.className=u;t.result={language:v,kw:y.keyword_count,re:y.r};if(y.second_best){t.second_best={language:y.second_best.language,kw:y.second_best.keyword_count,re:y.second_best.r}}}function o(){if(o.called){return}o.called=true;var r=document.getElementsByTagName("pre");for(var p=0;p<r.length;p++){var q=b(r[p]);if(q){n(q,hljs.tabReplace)}}}function l(){if(window.addEventListener){window.addEventListener("DOMContentLoaded",o,false);window.addEventListener("load",o,false)}else{if(window.attachEvent){window.attachEvent("onload",o)}else{window.onload=o}}}var e={};this.LANGUAGES=e;this.highlight=d;this.highlightAuto=g;this.fixMarkup=i;this.highlightBlock=n;this.initHighlighting=o;this.initHighlightingOnLoad=l;this.IR="[a-zA-Z][a-zA-Z0-9_]*";this.UIR="[a-zA-Z_][a-zA-Z0-9_]*";this.NR="\\b\\d+(\\.\\d+)?";this.CNR="\\b(0[xX][a-fA-F0-9]+|(\\d+(\\.\\d*)?|\\.\\d+)([eE][-+]?\\d+)?)";this.BNR="\\b(0b[01]+)";this.RSR="!|!=|!==|%|%=|&|&&|&=|\\*|\\*=|\\+|\\+=|,|\\.|-|-=|/|/=|:|;|<|<<|<<=|<=|=|==|===|>|>=|>>|>>=|>>>|>>>=|\\?|\\[|\\{|\\(|\\^|\\^=|\\||\\|=|\\|\\||~";this.ER="(?![\\s\\S])";this.BE={b:"\\\\.",r:0};this.ASM={cN:"string",b:"'",e:"'",i:"\\n",c:[this.BE],r:0};this.QSM={cN:"string",b:'"',e:'"',i:"\\n",c:[this.BE],r:0};this.CLCM={cN:"comment",b:"//",e:"$"};this.CBLCLM={cN:"comment",b:"/\\*",e:"\\*/"};this.HCM={cN:"comment",b:"#",e:"$"};this.NM={cN:"number",b:this.NR,r:0};this.CNM={cN:"number",b:this.CNR,r:0};this.BNM={cN:"number",b:this.BNR,r:0};this.inherit=function(r,s){var p={};for(var q in r){p[q]=r[q]}if(s){for(var q in s){p[q]=s[q]}}return p}}();hljs.LANGUAGES.cpp=function(){var a={keyword:{"false":1,"int":1,"float":1,"while":1,"private":1,"char":1,"catch":1,"export":1,virtual:1,operator:2,sizeof:2,dynamic_cast:2,typedef:2,const_cast:2,"const":1,struct:1,"for":1,static_cast:2,union:1,namespace:1,unsigned:1,"long":1,"throw":1,"volatile":2,"static":1,"protected":1,bool:1,template:1,mutable:1,"if":1,"public":1,friend:2,"do":1,"return":1,"goto":1,auto:1,"void":2,"enum":1,"else":1,"break":1,"new":1,extern:1,using:1,"true":1,"class":1,asm:1,"case":1,typeid:1,"short":1,reinterpret_cast:2,"default":1,"double":1,register:1,explicit:1,signed:1,typename:1,"try":1,"this":1,"switch":1,"continue":1,wchar_t:1,inline:1,"delete":1,alignof:1,char16_t:1,char32_t:1,constexpr:1,decltype:1,noexcept:1,nullptr:1,static_assert:1,thread_local:1,restrict:1,_Bool:1,complex:1},built_in:{std:1,string:1,cin:1,cout:1,cerr:1,clog:1,stringstream:1,istringstream:1,ostringstream:1,auto_ptr:1,deque:1,list:1,queue:1,stack:1,vector:1,map:1,set:1,bitset:1,multiset:1,multimap:1,unordered_set:1,unordered_map:1,unordered_multiset:1,unordered_multimap:1,array:1,shared_ptr:1}};return{dM:{k:a,i:"</",c:[hljs.CLCM,hljs.CBLCLM,hljs.QSM,{cN:"string",b:"'\\\\?.",e:"'",i:"."},{cN:"number",b:"\\b(\\d+(\\.\\d*)?|\\.\\d+)(u|U|l|L|ul|UL|f|F)"},hljs.CNM,{cN:"preprocessor",b:"#",e:"$"},{cN:"stl_container",b:"\\b(deque|list|queue|stack|vector|map|set|bitset|multiset|multimap|unordered_map|unordered_set|unordered_multiset|unordered_multimap|array)\\s*<",e:">",k:a,r:10,c:["self"]}]}}}();hljs.LANGUAGES.r={dM:{c:[hljs.HCM,{cN:"number",b:"\\b0[xX][0-9a-fA-F]+[Li]?\\b",e:hljs.IMMEDIATE_RE,r:0},{cN:"number",b:"\\b\\d+(?:[eE][+\\-]?\\d*)?L\\b",e:hljs.IMMEDIATE_RE,r:0},{cN:"number",b:"\\b\\d+\\.(?!\\d)(?:i\\b)?",e:hljs.IMMEDIATE_RE,r:1},{cN:"number",b:"\\b\\d+(?:\\.\\d*)?(?:[eE][+\\-]?\\d*)?i?\\b",e:hljs.IMMEDIATE_RE,r:0},{cN:"number",b:"\\.\\d+(?:[eE][+\\-]?\\d*)?i?\\b",e:hljs.IMMEDIATE_RE,r:1},{cN:"keyword",b:"(?:tryCatch|library|setGeneric|setGroupGeneric)\\b",e:hljs.IMMEDIATE_RE,r:10},{cN:"keyword",b:"\\.\\.\\.",e:hljs.IMMEDIATE_RE,r:10},{cN:"keyword",b:"\\.\\.\\d+(?![\\w.])",e:hljs.IMMEDIATE_RE,r:10},{cN:"keyword",b:"\\b(?:function)",e:hljs.IMMEDIATE_RE,r:2},{cN:"keyword",b:"(?:if|in|break|next|repeat|else|for|return|switch|while|try|stop|warning|require|attach|detach|source|setMethod|setClass)\\b",e:hljs.IMMEDIATE_RE,r:1},{cN:"literal",b:"(?:NA|NA_integer_|NA_real_|NA_character_|NA_complex_)\\b",e:hljs.IMMEDIATE_RE,r:10},{cN:"literal",b:"(?:NULL|TRUE|FALSE|T|F|Inf|NaN)\\b",e:hljs.IMMEDIATE_RE,r:1},{cN:"identifier",b:"[a-zA-Z.][a-zA-Z0-9._]*\\b",e:hljs.IMMEDIATE_RE,r:0},{cN:"operator",b:"<\\-(?!\\s*\\d)",e:hljs.IMMEDIATE_RE,r:2},{cN:"operator",b:"\\->|<\\-",e:hljs.IMMEDIATE_RE,r:1},{cN:"operator",b:"%%|~",e:hljs.IMMEDIATE_RE},{cN:"operator",b:">=|<=|==|!=|\\|\\||&&|=|\\+|\\-|\\*|/|\\^|>|<|!|&|\\||\\$|:",e:hljs.IMMEDIATE_RE,r:0},{cN:"operator",b:"%",e:"%",i:"\\n",r:1},{cN:"identifier",b:"`",e:"`",r:0},{cN:"string",b:'"',e:'"',c:[hljs.BE],r:0},{cN:"string",b:"'",e:"'",c:[hljs.BE],r:0},{cN:"paren",b:"[[({\\])}]",e:hljs.IMMEDIATE_RE,r:0}]}};
+hljs.initHighlightingOnLoad();
+</script>
+
+<!-- MathJax scripts -->
+<script type="text/javascript" src="https://cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+
+<style type="text/css">
+body, td {
+   font-family: sans-serif;
+   background-color: white;
+   font-size: 13px;
+}
+
+body {
+  max-width: 800px;
+  margin: auto;
+  padding: 1em;
+  line-height: 20px;
+}
+
+tt, code, pre {
+   font-family: 'DejaVu Sans Mono', 'Droid Sans Mono', 'Lucida Console', Consolas, Monaco, monospace;
+}
+
+h1 {
+   font-size:2.2em;
+}
+
+h2 {
+   font-size:1.8em;
+}
+
+h3 {
+   font-size:1.4em;
+}
+
+h4 {
+   font-size:1.0em;
+}
+
+h5 {
+   font-size:0.9em;
+}
+
+h6 {
+   font-size:0.8em;
+}
+
+a:visited {
+   color: rgb(50%, 0%, 50%);
+}
+
+pre, img {
+  max-width: 100%;
+}
+pre {
+  overflow-x: auto;
+}
+pre code {
+   display: block; padding: 0.5em;
+}
+
+code {
+  font-size: 92%;
+  border: 1px solid #ccc;
+}
+
+code[class] {
+  background-color: #F8F8F8;
+}
+
+table, td, th {
+  border: none;
+}
+
+blockquote {
+   color:#666666;
+   margin:0;
+   padding-left: 1em;
+   border-left: 0.5em #EEE solid;
+}
+
+hr {
+   height: 0px;
+   border-bottom: none;
+   border-top-width: thin;
+   border-top-style: dotted;
+   border-top-color: #999999;
+}
+
+@media print {
+   * {
+      background: transparent !important;
+      color: black !important;
+      filter:none !important;
+      -ms-filter: none !important;
+   }
+
+   body {
+      font-size:12pt;
+      max-width:100%;
+   }
+
+   a, a:visited {
+      text-decoration: underline;
+   }
+
+   hr {
+      visibility: hidden;
+      page-break-before: always;
+   }
+
+   pre, blockquote {
+      padding-right: 1em;
+      page-break-inside: avoid;
+   }
+
+   tr, img {
+      page-break-inside: avoid;
+   }
+
+   img {
+      max-width: 100% !important;
+   }
+
+   @page :left {
+      margin: 15mm 20mm 15mm 10mm;
+   }
+
+   @page :right {
+      margin: 15mm 10mm 15mm 20mm;
+   }
+
+   p, h2, h3 {
+      orphans: 3; widows: 3;
+   }
+
+   h2, h3 {
+      page-break-after: avoid;
+   }
+}
+</style>
+
+
+
+</head>
+
+<body>
+<!--
+  %\VignetteIndexEntry{EfficientMaxEigenpair Vignette} 
+  %\VignetteEngine{knitr::knitr}
+  %\VignetteEncoding{UTF-8}
+-->
+
+<hr/>
+
+<p>title: &ldquo;EfficientMaxEigenpair Vignette&rdquo;
+header-includes:
+    - \usepackage{url}
+author:</p>
+
+<ul>
+<li>Mu-Fa Chen</li>
+<li>Assisted by Xiao-Jun Mao
+date: &#39;2017-10-23&#39;
+output: html_document
+&mdash;</li>
+</ul>
+
+<p><code>EfficientMaxEigenpair</code> is a package for computing the maximal eigenpair of the matrices with non-negative off-diagonal elements (or as a dual, the minimal eigenvalue of the matrices with non-positive off-diagonal elements). This vignette is a simple guide to using the package. All the algorithms and examples provided in this vignette are available in both the paper &ldquo;Efficient initials for computing maximal eigenpair&rdquo; and &ldquo;Global algorithms for maximal eigenpair&rdquo; by Mu-Fa Chen. The papers <a href="http://math0.bnu.edu.cn/%7Echenmf/">Chen (2016)</a> and <a href="http://math0.bnu.edu.cn/%7Echenmf/">Chen (2017)</a> are now included in the Vol 4, in the middle of the website:
+\begin{center}
+\url{<a href="http://math0.bnu.edu.cn/%7Echenmf/">http://math0.bnu.edu.cn/~chenmf/</a>}
+\end{center}
+Let us install and require the package <code>EfficientMaxEigenpair</code> first.</p>
+
+<pre><code class="r">require(EfficientMaxEigenpair)
+</code></pre>
+
+<p>Before moving to the details, let us illustrate the algorithm by two typical examples.</p>
+
+<h4>The tridiagonal case (Example 7 in <a href="http://math0.bnu.edu.cn/%7Echenmf/">Chen (2016)</a>)</h4>
+
+<p>The matrices we considered for the tridiagonal case are in the form of
+\begin{center}
+\(Q=\begin{bmatrix} -1 & 1^2 & 0 & 0 & \dots & 0 \ 1^2 & -5 & 2^2 & 0 & \dots & 0 \ 0 & 2^2 & -13 & 3^2 & \dots & 0 \ \vdots & \ddots & \ddots & \ddots & \vdots & \vdots \ 0 & \dots & \dots & (n-2)^2 & -(n-2)^2-(n-1)^2 & (n-1)^2 \ 0 & \dots & \dots & 0 & (n-1)^2 & -(n-1)^2-n^2 \end{bmatrix}\),
+\end{center}
+where \(n\) is the dimension of the matrix. For the infinite case, we have known that the maximal eigenvalue is \(-&frac14;\). We now want to calulate the maximal eigenvalues of matrices in different dimensions by the Rayleigh quotient iteration.</p>
+
+<pre><code class="r"># Define the dimension of matrix to be 100.
+nn = 100
+
+# Generate the corresponding tridiagonal matrix.
+a = c(1:(nn - 1))^2
+b = c(1:(nn - 1))^2
+c = rep(0, length(a) + 1)
+c[length(a) + 1] = nn^2
+
+# Output the corresponding convergence maximal eigenpairs of the tridiagonal
+# matrix.
+eigenpair = eff.ini.maxeig.tri(a, b, c, xi = 7/8)
+</code></pre>
+
+<p>The output here are the approximations \(z\) of the maximal eigenvalue of matrix \(Q\). However, in what follow, we often write -\(z\) instead of \(z\) for simplicity.</p>
+
+<pre><code class="r"># The approximating sequence z_0, z_1, z_2 of the maximal eigenvalue.
+eigenpair$z
+</code></pre>
+
+<pre><code>## [1] -0.387333 -0.376393 -0.376383
+</code></pre>
+
+<p>The following figure shows the corresponding eigenvetors \(v\) up to a sign. To be consistent with the paper&#39;s notation, we accept the convention that the first element in vector start with \(v[0]\). From the first figure below, one sees that the eigenvectors \(-v[1]\) and \(v[2]\) are nearly the same. However, if we look at the last parts of the curves, it is clear that \(-v[1]\) and \(v[2]\) are actually different. Here we plot them in the same figure to compare. The following two figures show the approximating sequence \(v[0]\), \(v[1]\), \(v[2]\)(up to a sign) of the maximal eigenvector.</p>
+
+<p><img src="data:application/pdf;base64,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7qeMT59+A/eE8/tlbmRzdHJlYW0KZW5kb2JqCjkgMCBvYmoKPDwKL1R5cGUgL0VuY29kaW5nIC9CYXNlRW5jb2RpbmcgL1dpbkFuc2lFbmNvZGluZwovRGlmZmVyZW5jZXMgWyA0NS9taW51cyA5Ni9xdW90ZWxlZnQKMTQ0L2RvdGxlc3NpIC9ncmF2ZSAvYWN1dGUgL2NpcmN1bWZsZXggL3RpbGRlIC9tYWNyb24gL2JyZXZlIC9kb3RhY2NlbnQKL2RpZXJlc2lzIC8ubm90ZGVmIC9yaW5nIC9jZWRpbGxhIC8ubm90ZGVmIC9odW5nYXJ1bWxhdXQgL29nb25layAvY2Fyb24gL3NwYWNlXQo+PgplbmRvYmoKMTAgMCBvYmoKPDwgL1R5cGUgL0ZvbnQgL1N1YnR5cGUgL1R5cGUxIC9OYW1lIC9GMiAvQmFzZUZvbnQgL0hlbHZldGljYQovRW5jb2RpbmcgOSAwIFIgPj4KZW5kb2JqCnhyZWYKMCAxMQowMDAwMDAwMDAwIDY1NTM1IGYgCjAwMDAwMDAwMjEgMDAwMDAgbiAKMDAwMDAwMDE2MyAwMDAwMCBuIAowMDAwMDAyNTA1IDAwMDAwIG4gCjAwMDAwMDI1ODggMDAwMDAgbiAKMDAwMDAwMjcwMCAwMDAwMCBuIAowMDAwMDAyNzMzIDAwMDAwIG4gCjAwMDAwMDAyMTIgMDAwMDAgbiAKMDAwMDAwMDI5MiAwMDAwMCBuIAowMDAwMDA1NDI4IDAwMDAwIG4gCjAwMDAwMDU2ODUgMDAwMDAgbiAKdHJhaWxlcgo8PCAvU2l6ZSAxMSAvSW5mbyAxIDAgUiAvUm9vdCAyIDAgUiA+PgpzdGFydHhyZWYKNTc4MgolJUVPRgo=" alt="$v[0]$, $v[1]$, $v[2]$"/>{width=280px} <img src="data:application/pdf;base64,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" alt="$v[1]$, $v[2]$"/>{width=280px}</p>
+
+<p>In the following, because of the space limitation, we do not report the eigenvector results and write -\(z\) instead of \(z\) for simplicity.</p>
+
+<pre><code class="r"># Define the dimension of each matrix.
+nn = c(100, 500, 1000, 5000)
+
+zmat = matrix(0, length(nn), 4)
+zmat[, 1] = nn
+
+for (i in 1:length(nn)) {
+    # Generate the corresponding tridiagonal matrix for different dimensions.
+    a = c(1:(nn[i] - 1))^2
+    b = c(1:(nn[i] - 1))^2
+    c = rep(0, length(a) + 1)
+    c[length(a) + 1] = nn[i]^2
+
+    # Output the corresponding dual case results, i.e, the minimal eigenvalue of
+    # the tridiagonal matrix -Q with non-posivie off-diagonal elements.
+    zmat[i, -1] = -eff.ini.maxeig.tri(a, b, c, xi = 7/8)$z[1:3]
+}
+
+colnames(zmat) = c(&quot;Dimension&quot;, &quot;-z_0&quot;, &quot;-z_1&quot;, &quot;-z_2&quot;)
+zmat
+# The approximating sequence -z_0, -z_1, -z_2 of the maximal eigenvalue.
+</code></pre>
+
+<pre><code>##      Dimension     -z_0     -z_1     -z_2
+## [1,]       100 0.387333 0.376393 0.376383
+## [2,]       500 0.349147 0.338342 0.338329
+## [3,]      1000 0.338027 0.327254 0.327240
+## [4,]      5000 0.319895 0.308550 0.308529
+</code></pre>
+
+<h4>The general case (Example 20 in <a href="http://math0.bnu.edu.cn/%7Echenmf/">Chen (2016)</a>)</h4>
+
+<p>The matrix we considered for this general case is</p>
+
+<pre><code class="r"># Generate the general matrix A
+A = matrix(c(1, 3, 9, 5, 2, 14, 10, 6, 0, 11, 11, 7, 0, 0, 1, 8), 4, 4)
+A
+</code></pre>
+
+<pre><code>##      [,1] [,2] [,3] [,4]
+## [1,]    1    2    0    0
+## [2,]    3   14   11    0
+## [3,]    9   10   11    1
+## [4,]    5    6    7    8
+</code></pre>
+
+<p>This matrix has complex eigenvalues:</p>
+
+<pre><code class="r"># Calculate the corresponding eigenvalues of matrix A
+eigen(A)$values
+</code></pre>
+
+<pre><code>## [1] 24.029261+0.000000i  7.722536+0.000000i  1.124102+2.405217i
+## [4]  1.124102-2.405217i
+</code></pre>
+
+<p>We have to be carefull to choice the initial eigenpairs \(z_0\) and \(v[0]\) for this matrix A. The following is one counterexample with dangerous initials. The approximating sequence converges to the next to maximal eigenvalue rather than the maximal eigenvalue.</p>
+
+<pre><code class="r"># Calulate the approximating sequence of maximal eigenvalue by the Rayleigh
+# quotient iteration.
+eff.ini.maxeig.general(A, z0 = &quot;Auto&quot;, digit.thresh = 4)$z
+</code></pre>
+
+<pre><code>## [1] &quot;m=31&quot;
+## [1]  9.1190 14.8945  8.0499  7.8086  7.7285  7.7233  7.7225
+</code></pre>
+
+<p>Here we fixed the problem by using improved algorithm and safer initials which will be illustrated in detail of the algorithm part.</p>
+
+<pre><code class="r"># Calulate the approximating sequence of maximal eigenvalue by the Rayleigh
+# quotient iteration.
+eff.ini.maxeig.general(A, xi = 0.65, digit.thresh = 4)$z
+</code></pre>
+
+<pre><code>## [1] &quot;m=31&quot;
+## [1] 26.5804 23.9641 24.0290 24.0293
+</code></pre>
+
+<p>Having illustrated the examples, we now introduce the package in details. It offers four main algorithms:</p>
+
+<ul>
+<li><p><code>eff.ini.maxeig.tri()</code>: calculate the maximal eigenpair for the tridiagonal matrix. The coefficient <code>xi</code> is used to form the convex combination of \(1/\delta_1\) and \((v_0,Av_0)_\mu\) (in the dual case \((v_0,-Av_0)_\mu\)), it should between 0 and 1. The inner product \((,)_\mu\) here is in the space \(L^{2}(\mu)\).  The choice <code>xi=1</code> is very safe but less effective. When <code>xi</code> is a little away from 1, the algorithm becomes more effective. However, when <code>xi</code> is closed to 0, the algorithm becomes less effective again and is even dangerous. The &ldquo;best&rdquo; choice of <code>xi</code> depends on the model. For different models, one may choose different <code>xi</code>. In the present tridiagonal case, we suggest a common choice <code>xi=7/8</code> (See Example 7 above/below).</p>
+
+<ul>
+<li>The precise level used for output results is set to be <code>digit.thresh = 6</code> which implies 1e-6 without any special requirement. Same for the following three algorithms and the examples shown in this vignette.</li>
+<li>This algorithm works not only for tridiagonal matrix, but also for diagonally dominant matrices. In the latter case, one simply picks up the diagonal part from the original one, as illustrated by the last part of Example 17 in the paper <a href="http://math0.bnu.edu.cn/%7Echenmf/">Chen (2016)</a>. The improved algorithm below Example 10 in the cited paper is recommended.</li>
+</ul></li>
+<li><p><code>eff.ini.maxeig.shift.inv.tri()</code>: </p>
+
+<ul>
+<li><code>eff.ini.maxeig.shift.inv.tri()</code> is a safe improvement of <code>eff.ini.maxeig.tri()</code>. It is simplified based on Section A.4 in <a href="http://math0.bnu.edu.cn/%7Echenmf/">Chen (2017)</a>. </li>
+<li>The construction of the sequences \(A_{j}\) and \(B_{j}\) in solving the linear equation is not trivial. This is especially meaningful when going to the large scale matrices.</li>
+</ul></li>
+<li><p><code>eff.ini.maxeig.general()</code>: calculate the maximal eigenpair for the general matrix with non-negative off-diagonal elements. Let the general matrix \(A=(a_{ij}:i,j\in E)\).</p>
+
+<ul>
+<li>The initial vector \(v_0\) is given by the option <code>v0_tilde</code>, if <code>v0_tilde=NULL</code>, the one computed in Section 4.2 in the paper <a href="http://math0.bnu.edu.cn/%7Echenmf/">Chen (2016)</a> is used. Typically, we use two different initial vectors \(v_0\), the uniformly distributed one (Section 4.1) and the one computed in Section 4.2, below (10). The first one is safer but less effective and we encourage to use the second one.</li>
+<li>There are three choices of the initial \(z_0\) as the approximation of \(\rho(A)\) which is the maximal eigenvalue of the general matrix \(A\). The option <code>z_0=&quot;fixed&quot;</code> corresponding to the choice I, i.e, set \(z_0=\sup_{i\in E}A_{i}\), where \(A_{i}=\sum_{j\in E}a_{ij}\). The option <code>z_0=&quot;Auto&quot;</code> corresponding to the choice II, i.e, set \(z_0=v_0^{\ast}Av_{0}\). This simpler choice is used in the other (\(z_k:k\ge 1\)), but it may be dangerous as initial \(z_0\) as illustrated by Example 20 above/below. The option <code>z_0=&quot;numeric&quot;</code> corresponding to the choice III, as mentioned in the first algorithm for diagonally dominant matrices.</li>
+<li>The option <code>z0numeric</code> is only used when the initial \(z_0\) is considered based on (11) in the paper <a href="http://math0.bnu.edu.cn/%7Echenmf/">Chen (2016)</a>.</li>
+<li>Similarly, there are other options <code>xi</code> and <code>digit.thresh</code> which are the same as defined in function <code>eff.ini.maxeig.tri()</code>. The improved algorithm is recommended. However, here we should choose a smaller <code>xi</code>, say 1/3 or 0.65 used in Examples 18-20 below.</li>
+</ul></li>
+<li><p><code>eff.ini.secondeig.tri()</code>: calculate the next to maximal eigenpair for the tridiagonal matrix. As mentioned in the cited paper, for simplicity, here we assume that the sums of each row of the input tridiagonal matrix should be 0, i.e, \(A_{i}=0\) for all \(i\in E\). Similarly, there are other options <code>xi</code> and <code>digit.thresh</code> which are the same as defined in function <code>eff.ini.maxeig.tri()</code>.</p></li>
+<li><p><code>eff.ini.secondeig.general()</code>: calculate the next to maximal eigenpair for the general conservative matrix where the conservativity of matrix means that the sums of each row are all 0, i.e, \(A_{i}=0\) for all \(i\in E\).</p>
+
+<ul>
+<li>There are two choices of the initial \(z_0\) as the approximation of \(\lambda_1(A)\) which is the second largest eigenvalue of the general matrix \(A\). The option <code>z_0=&quot;fixed&quot;</code> corresponding to the approximation to be \(z_0\approx\lambda_0(A_1)\), where \(A_1\) is an auxiliary matrix \(A\)-matrix given in below. The option <code>z_0=&quot;Auto&quot;</code> corresponding to the approximation given in Section 6 in the paper <a href="http://math0.bnu.edu.cn/%7Echenmf/">Chen (2016)</a>. It may be necessary to use <code>z_0=&quot;fixed&quot;</code>, especially for large matrices.</li>
+<li>A large constant \(c_1\) is provided to replace the last diagonal element \(A[N,N]\) to generate the auxiliary matrix \(A\)-matrix \(A_1\). Similarly, there is an option <code>digit.thresh</code> which is the same as defined in function <code>eff.ini.maxeig.tri()</code>.</li>
+</ul></li>
+</ul>
+
+<p>There are two auxiliary functions <code>tridia()</code> and <code>ray.quot()</code> where:</p>
+
+<ul>
+<li><code>tridiag()</code>: generate tridiagonal matrix \(A\) based on three input vectors.</li>
+<li><code>ray.quot.tri()</code>: rayleigh quotient iteration algorithm for computing the maximal eigenpair of tridigonal matrix \(Q\).</li>
+<li><code>shift.inv.tri()</code>: shifted inverse iteration algorithm using \(\delta_k\) for computing the maximal eigenpair of tridigonal matrix \(Q\).</li>
+<li><code>ray.quot.seceig.tri()</code>: rayleigh quotient iteration algorithm for computing the next to maximal eigenpair of tridigonal matrix \(Q\).</li>
+<li><code>ray.quot.general()</code>: rayleigh quotient iteration algorithm for computing the maximal eigenpair of general matrix \(A\).</li>
+<li><code>ray.quot.seceig.general()</code>: rayleigh quotient iteration algorithm for computing the next to maximal eigenpair of general matrix \(A\).</li>
+<li><code>tri.sol()</code>: solve the linear equation (-\(Q\)-\(z\)*\(I\))\(w\)=\(v\).</li>
+<li><code>delta()</code>: compute \(\delta_k\) for given vector \(v\) and matrix \(Q\) based on Section A.4 in <a href="http://math0.bnu.edu.cn/%7Echenmf/">Chen (2017)</a>. </li>
+</ul>
+
+<h2>Acknowledgement</h2>
+
+<p>The research project is supported in part by the National Natural Science Foundation of China (No. 11131003, 11626245, 11771046) and the Project Funded by the Priority Academic Program Development of Jiangsu Higher Education Institutions. The first author acknowledges the assisted one for his hard work in preparing this package in R.</p>
+
+<h2>Examples</h2>
+
+<p>We show most of the examples in the paper <a href="http://math0.bnu.edu.cn/%7Echenmf/">Chen (2016)</a> in this section. For a convenient comparison, we keep the same subsection names and examples as
+the paper <a href="http://math0.bnu.edu.cn/%7Echenmf/">Chen (2016)</a>.</p>
+
+<h3>Efficient initials. The tridiagonal case.</h3>
+
+<p>In this subsection, armed with <code>eff.ini.maxeig.tri()</code>, we can calculate the maximal eigenpair for the tridiagonal matrix. Sometimes we will report the minimal eigenvalue of \(-Q\) by the convention in the paper <a href="http://math0.bnu.edu.cn/%7Echenmf/">Chen (2016)</a>.</p>
+
+<h4>The minimal eigenvalue of -Q Example 7 (Same as in Example 1)</h4>
+
+<pre><code class="r">a = c(1:7)^2
+b = c(1:7)^2
+c = rep(0, length(a) + 1)
+c[length(a) + 1] = 8^2
+-eff.ini.maxeig.tri(a, b, c, xi = 1)$z
+</code></pre>
+
+<pre><code>## [1] 0.485985 0.525313 0.525268
+</code></pre>
+
+<h4>Example 7 (Ordinary and Improved)</h4>
+
+<p>In the tridiagonal case, the improved algorithm is presented below Example 10 in <a href="http://math0.bnu.edu.cn/%7Echenmf/">Chen (2016)</a>.</p>
+
+<pre><code class="r">nn = c(100, 500, 1000, 5000, 7500, 10^4)
+for (i in 1:6) {
+    a = c(1:(nn[i] - 1))^2
+    b = c(1:(nn[i] - 1))^2
+    c = rep(0, length(a) + 1)
+    c[length(a) + 1] = nn[i]^2
+
+    print(-eff.ini.maxeig.tri(a, b, c, xi = 1)$z)
+    print(-eff.ini.maxeig.tri(a, b, c, xi = 7/8)$z)
+}
+</code></pre>
+
+<pre><code>## [1] 0.348549 0.376437 0.376383
+## [1] 0.387333 0.376393 0.376383
+## [1] 0.310195 0.338402 0.338329
+## [1] 0.349147 0.338342 0.338329
+## [1] 0.299089 0.327320 0.327240
+## [1] 0.338027 0.327254 0.327240
+## [1] 0.281156 0.308623 0.308529
+## [1] 0.319895 0.308550 0.308529
+## [1] 0.277865 0.305016 0.304918
+## [1] 0.316529 0.304942 0.304918
+## [1] 0.275762 0.302660 0.302561
+## [1] 0.314370 0.302586 0.302561
+</code></pre>
+
+<h6>With safe improvement</h6>
+
+<pre><code class="r">nn = c(8, 100, 500, 1000, 5000, 7500, 10^4)
+for (i in 1:7) {
+    a = c(1:(nn[i] - 1))^2
+    b = c(1:(nn[i] - 1))^2
+    c = rep(0, length(a) + 1)
+    c[length(a) + 1] = nn[i]^2
+
+    print(-eff.ini.maxeig.shift.inv.tri(a, b, c, xi = 1)$z)
+}
+</code></pre>
+
+<pre><code>## [1] 0.485985 0.524150 0.525267 0.525268
+## [1] 0.348549 0.374848 0.376378 0.376383
+## [1] 0.310195 0.336860 0.338320 0.338329
+## [1] 0.299089 0.325735 0.327229 0.327240
+## [1] 0.281156 0.306874 0.308514 0.308529
+## [1] 0.277865 0.303213 0.304903 0.304918
+## [1] 0.275762 0.300821 0.302545 0.302561
+</code></pre>
+
+<h4>The maximal eigenvalue of A Example 8 (Due to L.K.Hua)</h4>
+
+<pre><code class="r">a = 14/100
+b = 40/100
+c = c(-25/100 - 40/100, -12/100 - 14/100)
+eff.ini.maxeig.tri(a, b, c, xi = 1)$z
+eff.ini.maxeig.tri(a, b, c, xi = 7/8)$z
+</code></pre>
+
+<pre><code>## [1] &quot;Input vector c should be all nonnegative!&quot;
+## [1] &quot;m=0.65&quot;
+## [1] 0.437923 0.430407 0.430408
+## [1] &quot;Input vector c should be all nonnegative!&quot;
+## [1] &quot;m=0.65&quot;
+## [1] 0.436733 0.430407 0.430408
+</code></pre>
+
+<h6>With safe improvement</h6>
+
+<pre><code class="r">eff.ini.maxeig.shift.inv.tri(a, b, c, xi = 1)$z
+eff.ini.maxeig.shift.inv.tri(a, b, c, xi = 7/8)$z
+</code></pre>
+
+<pre><code>## [1] &quot;Input vector c should be all nonnegative!&quot;
+## [1] &quot;m=0.65&quot;
+## [1] 0.437923 0.430519 0.430408
+## [1] &quot;Input vector c should be all nonnegative!&quot;
+## [1] &quot;m=0.65&quot;
+## [1] 0.436733 0.430502 0.430408
+</code></pre>
+
+<h4>Example 10 (tridiagonal case)</h4>
+
+<pre><code class="r">a = c(sqrt(10), sqrt(130)/11)
+b = c(11/sqrt(10), 20 * sqrt(130)/143)
+c = c(-1 - 11/sqrt(10), -25/11 - sqrt(10) - 20 * sqrt(130)/143, -8/11 - sqrt(130)/11)
+eff.ini.maxeig.tri(a, b, c, xi = 1, digit.thresh = 5)$z
+eff.ini.maxeig.tri(a, b, c, xi = 7/8, digit.thresh = 5)$z
+</code></pre>
+
+<pre><code>## [1] &quot;Input vector c should be all nonnegative!&quot;
+## [1] &quot;m=7.02965587709025&quot;
+## [1] 5.37523 5.23581 5.23607
+## [1] &quot;Input vector c should be all nonnegative!&quot;
+## [1] &quot;m=7.02965587709025&quot;
+## [1] 5.31610 5.23598 5.23607
+</code></pre>
+
+<h6>With safe improvement</h6>
+
+<pre><code class="r">eff.ini.maxeig.shift.inv.tri(a, b, c, xi = 1, digit.thresh = 5)$z
+eff.ini.maxeig.shift.inv.tri(a, b, c, xi = 7/8, digit.thresh = 5)$z
+</code></pre>
+
+<pre><code>## [1] &quot;Input vector c should be all nonnegative!&quot;
+## [1] &quot;m=7.02965587709025&quot;
+## [1] 5.37523 5.23853 5.23607
+## [1] &quot;Input vector c should be all nonnegative!&quot;
+## [1] &quot;m=7.02965587709025&quot;
+## [1] 5.31610 5.23750 5.23607
+</code></pre>
+
+<h4>Example A3 in <a href="http://math0.bnu.edu.cn/%7Echenmf/">Chen (2017)</a></h4>
+
+<pre><code class="r">a = c(0.5142, 0.2115, 0.8442, 0.2347, 0.9837)
+b = c(0.9962, 0.1111, 0.1405, 0.7595, 0.0781)
+c = c(-2.334 - 0.9962, -2.6725 - 0.5142 - 0.1111, -2.263 - 0.2115 - 0.1405, 
+    -2.8457 - 0.8442 - 0.7595, -2.2257 - 0.2347 - 0.0781, -2.1582 - 0.9837)
+eff.ini.maxeig.tri(a, b, c, xi = 1)$z
+</code></pre>
+
+<pre><code>## [1] &quot;Input vector c should be all nonnegative!&quot;
+## [1] &quot;m=4.4494&quot;
+## [1] 3.354013 3.261798 3.267517 3.267534
+</code></pre>
+
+<h6>With safe improvement</h6>
+
+<pre><code class="r">eff.ini.maxeig.shift.inv.tri(a, b, c, xi = 1)$z
+</code></pre>
+
+<pre><code>## [1] &quot;Input vector c should be all nonnegative!&quot;
+## [1] &quot;m=4.4494&quot;
+## [1] 3.354013 3.279473 3.268503 3.267543 3.267534
+</code></pre>
+
+<p>From the above we can see that using the idea in the paper <a href="http://math0.bnu.edu.cn/%7Echenmf/">Chen (2017)</a>&hellip;(\(z_{k}\)=\(\delta_{k}^{-1}\)) may need one or two more steps than the <a href="http://math0.bnu.edu.cn/%7Echenmf/">Chen (2016)</a> but <a href="http://math0.bnu.edu.cn/%7Echenmf/">Chen (2017)</a>&#39;s improvement is safe and never fall into pitfall, so we can use the new one instead of the old in 2016.</p>
+
+<h3>Efficient initials. The general case.</h3>
+
+<p>To get the maximal eigenpair for the general matrix \(Q\), there are several choices of the initial vector \(v_0\) and the initial \(z_0\). In this subsection, we study several combinations of the choices.</p>
+
+<h4>Fixed Uniformly distributed initial vector \(v_0=(1,\dots,1)/\sqrt(N+1)\).</h4>
+
+<h5>Choice I for \(z_0=\sup_{i\in E}A_{i}\)</h5>
+
+<h6>Example 13</h6>
+
+<pre><code class="r">A = matrix(c(1, 1, 3, 2, 2, 2, 3, 1, 1), 3, 3)
+eff.ini.maxeig.general(A, v0_tilde = rep(1, dim(A)[1]), z0 = &quot;fixed&quot;, digit.thresh = 5)$z
+</code></pre>
+
+<pre><code>## [1] &quot;m=6&quot;
+## [1] 6.00000 5.26700 5.23625 5.23607
+</code></pre>
+
+<h6>Example 14</h6>
+
+<pre><code class="r">A = t(matrix(seq(1, 16), 4, 4))
+eff.ini.maxeig.general(A, v0_tilde = rep(1, dim(A)[1]), z0 = &quot;fixed&quot;, digit.thresh = 4)$z
+</code></pre>
+
+<pre><code>## [1] &quot;m=58&quot;
+## [1] 58.0000 40.8309 36.6754 36.2149 36.2094
+</code></pre>
+
+<h6>Example 15</h6>
+
+<pre><code class="r">A = matrix(c(1, 3, 9, 5, 2, 14, 10, 6, 0, 11, 11, 7, 0, 0, 1, 8), 4, 4)
+eff.ini.maxeig.general(A, v0_tilde = rep(1, dim(A)[1]), z0 = &quot;fixed&quot;, digit.thresh = 4)$z
+</code></pre>
+
+<pre><code>## [1] &quot;m=31&quot;
+## [1] 31.0000 26.1329 24.3980 24.0405 24.0293
+</code></pre>
+
+<h6>Example 16 (Same as Example 1)</h6>
+
+<pre><code class="r">a = c(1:7)^2
+b = c(1:7)^2
+c = rep(0, length(a) + 1)
+c[length(a) + 1] = 8^2
+
+N = length(a)
+Q = tridiag(b, a, -c(b[1] + c[1], a[1:N - 1] + b[2:N] + c[2:N], a[N] + c[N + 
+    1]))
+
+A = 113 * diag(1, (N + 1)) + Q
+
+113 - eff.ini.maxeig.general(A, v0_tilde = rep(1, dim(A)[1]), z0 = &quot;fixed&quot;)$z
+</code></pre>
+
+<pre><code>## [1] &quot;m=113&quot;
+## [1] 0.000000 0.602312 0.525463 0.525268
+</code></pre>
+
+<h5>Choice II for \(z_0=v_0^{\ast}Av_{0}\) for Example 13-15</h5>
+
+<h6>Example 13</h6>
+
+<pre><code class="r">A = matrix(c(1, 1, 3, 2, 2, 2, 3, 1, 1), 3, 3)
+eff.ini.maxeig.general(A, v0_tilde = rep(1, dim(A)[1]), z0 = &quot;Auto&quot;, digit.thresh = 5)$z
+</code></pre>
+
+<pre><code>## [1] &quot;m=6&quot;
+## [1] 5.40741 5.24397 5.23608 5.23607
+</code></pre>
+
+<h6>Example 14</h6>
+
+<pre><code class="r">A = t(matrix(seq(1, 16), 4, 4))
+eff.ini.maxeig.general(A, v0_tilde = rep(1, dim(A)[1]), z0 = &quot;Auto&quot;, digit.thresh = 4)$z
+</code></pre>
+
+<pre><code>## [1] &quot;m=58&quot;
+## [1] 49.7143 39.4743 36.4526 36.2109 36.2094
+</code></pre>
+
+<h6>Example 15</h6>
+
+<pre><code class="r">A = matrix(c(1, 3, 9, 5, 2, 14, 10, 6, 0, 11, 11, 7, 0, 0, 1, 8), 4, 4)
+eff.ini.maxeig.general(A, v0_tilde = rep(1, dim(A)[1]), z0 = &quot;Auto&quot;, digit.thresh = 4)$z
+</code></pre>
+
+<pre><code>## [1] &quot;m=31&quot;
+## [1] 25.4634 24.6543 24.0648 24.0294 24.0293
+</code></pre>
+
+<h5>Choice III for numeric \(z_0\)</h5>
+
+<p>Here we use the combination coefficient <code>xi=7/8</code> which is a little different with <a href="http://math0.bnu.edu.cn/%7Echenmf/">Chen (2016)</a>.</p>
+
+<h6>Example 17: Symmetrizing matrix \(A\)</h6>
+
+<pre><code class="r">A = matrix(c(1, 3, 9, 5, 2, 14, 10, 6, 0, 11, 11, 7, 0, 0, 1, 8), 4, 4)
+S = (t(A) + A)/2
+N = dim(S)[1]
+a = diag(S[-1, -N])
+b = diag(S[-N, -1])
+c = rep(NA, N)
+c[1] = -diag(S)[1] - b[1]
+c[2:(N - 1)] = -diag(S)[2:(N - 1)] - b[2:(N - 1)] - a[1:(N - 2)]
+c[N] = -diag(S)[N] - a[N - 1]
+
+z0ini = eff.ini.maxeig.tri(a, b, c, xi = 7/8)$z[1]
+z0ini
+eff.ini.maxeig.general(A, v0_tilde = rep(1, dim(A)[1]), z0 = &quot;numeric&quot;, z0numeric = 28 - 
+    z0ini, digit.thresh = 4)$z
+</code></pre>
+
+<pre><code>## [1] &quot;Input vector c should be all nonnegative!&quot;
+## [1] &quot;m=27&quot;
+## [1] 21.83988
+## [1] &quot;m=31&quot;
+## [1] 24.8399 24.3981 24.0419 24.0293
+</code></pre>
+
+<h6>Example 17: Without Symmetrizing matrix \(A\)</h6>
+
+<pre><code class="r">A = matrix(c(1, 3, 9, 5, 2, 14, 10, 6, 0, 11, 11, 7, 0, 0, 1, 8), 4, 4)
+S = A
+N = dim(S)[1]
+a = diag(S[-1, -N])
+b = diag(S[-N, -1])
+c[1] = -diag(S)[1] - b[1]
+c[2:(N - 1)] = -diag(S)[2:(N - 1)] - b[2:(N - 1)] - a[1:(N - 2)]
+c[N] = -diag(S)[N] - a[N - 1]
+
+z0ini = eff.ini.maxeig.tri(a, b, c, xi = 7/8)$z[1]
+z0ini
+eff.ini.maxeig.general(A, v0_tilde = rep(1, dim(A)[1]), z0 = &quot;numeric&quot;, z0numeric = 31 - 
+    z0ini, digit.thresh = 4)$z
+</code></pre>
+
+<pre><code>## [1] &quot;Input vector c should be all nonnegative!&quot;
+## [1] &quot;m=28&quot;
+## [1] 23.31942
+## [1] &quot;m=31&quot;
+## [1] 23.3194 23.6705 24.0422 24.0293
+</code></pre>
+
+<p>####Efficient initial vector \(v_0\)
+The improved algorithm is presented at the end of Section 4 in <a href="http://math0.bnu.edu.cn/%7Echenmf/">Chen (2016)</a>. The outputs at the last line in Examples 18 and 19 are different from those presented in the cited paper, due to the reason that
+a slight different combination was used there.</p>
+
+<h5>Example 18 (Same as Example 10)</h5>
+
+<pre><code class="r">A = matrix(c(1, 1, 3, 2, 2, 2, 3, 1, 1), 3, 3)
+eff.ini.maxeig.general(A, z0 = &quot;Auto&quot;, digit.thresh = 5)$z
+eff.ini.maxeig.general(A, xi = 1, digit.thresh = 5)$z
+eff.ini.maxeig.general(A, xi = 1/3, digit.thresh = 5)$z
+eff.ini.maxeig.general(A, xi = 0, digit.thresh = 5)$z
+</code></pre>
+
+<pre><code>## [1] &quot;m=6&quot;
+## [1] 5.32151 5.23842 5.23607
+## [1] &quot;m=6&quot;
+## [1] 5.90218 5.23550 5.23607
+## [1] &quot;m=6&quot;
+## [1] 5.43571 5.23601 5.23607
+## [1] &quot;m=6&quot;
+## [1] 5.20248 5.23607
+</code></pre>
+
+<h5>Example 19 (Same as Example 14)</h5>
+
+<pre><code class="r">A = t(matrix(seq(1, 16), 4, 4))
+eff.ini.maxeig.general(A, z0 = &quot;Auto&quot;, digit.thresh = 4)$z
+eff.ini.maxeig.general(A, xi = 1, digit.thresh = 4)$z
+eff.ini.maxeig.general(A, xi = 1/3, digit.thresh = 4)$z
+eff.ini.maxeig.general(A, xi = 0, digit.thresh = 4)$z
+</code></pre>
+
+<pre><code>## [1] &quot;m=58&quot;
+## [1] 21.8485 32.3709 35.5903 36.2181 36.2094
+## [1] &quot;m=58&quot;
+## [1] 57.6110 35.4882 36.2081 36.2094
+## [1] &quot;m=58&quot;
+## [1] 40.0812 36.1690 36.2094
+## [1] &quot;m=58&quot;
+## [1] 31.3163 36.0541 36.2095 36.2094
+</code></pre>
+
+<h5>Example 20 (Same as Example 15)</h5>
+
+<pre><code class="r">A = matrix(c(1, 3, 9, 5, 2, 14, 10, 6, 0, 11, 11, 7, 0, 0, 1, 8), 4, 4)
+eff.ini.maxeig.general(A, z0 = &quot;Auto&quot;, digit.thresh = 4)$z
+eff.ini.maxeig.general(A, xi = 1, digit.thresh = 4)$z
+eff.ini.maxeig.general(A, xi = 0.65, digit.thresh = 4)$z
+eff.ini.maxeig.general(A, xi = 0, digit.thresh = 4)$z
+</code></pre>
+
+<pre><code>## [1] &quot;m=31&quot;
+## [1]  9.1190 14.8945  8.0499  7.8086  7.7285  7.7233  7.7225
+## [1] &quot;m=31&quot;
+## [1] 30.6865 23.6432 24.0257 24.0293
+## [1] &quot;m=31&quot;
+## [1] 26.5804 23.9641 24.0290 24.0293
+## [1] &quot;m=31&quot;
+## [1] 18.9548 23.0428 24.0437 24.0293
+</code></pre>
+
+<h5>Example 21</h5>
+
+<pre><code class="r">b4 = c(0.01, 1, 100)
+digits = c(9, 7, 6)
+
+for (i in 1:3) {
+    A = matrix(c(-3, 4, 0, 10, 0, 2, -7, 5, 0, 0, 0, 3, -5, 0, 0, 1, 0, 0, -16, 
+        11, 0, 0, 0, 6, -11 - b4[i]), 5, 5)
+    print(-eff.ini.maxeig.general(A, z0 = &quot;Auto&quot;, digit.thresh = digits[i])$z)
+}
+</code></pre>
+
+<pre><code>## [1] 0.002000000 0.000278151 0.000278686
+## [1] 0.0990974 0.0236258 0.0245174 0.0245175
+## [1] 1.666906 0.200058 0.182609 0.182819
+</code></pre>
+
+<h5>Example 22</h5>
+
+<h6>The result given by general algorithm</h6>
+
+<pre><code class="r">b4 = c(0.01, 1, 100)
+digits = c(9, 7, 6)
+
+for (i in 1:3) {
+    A = matrix(c(-5, 3, 0, 0, 0, 5, -7, 2, 0, 0, 0, 4, -3, 10, 0, 0, 0, 1, -16, 
+        11, 0, 0, 0, 6, -11 - b4[i]), 5, 5)
+    print(-eff.ini.maxeig.general(A, z0 = &quot;Auto&quot;, digit.thresh = digits[i])$z)
+}
+</code></pre>
+
+<pre><code>## [1] 0.002000000 0.000278151 0.000278686
+## [1] 0.1091040 0.0234222 0.0245174 0.0245175
+## [1] 1.550170 0.133420 0.182541 0.182819
+</code></pre>
+
+<h6>The result given by tri algorithm</h6>
+
+<pre><code class="r">b4 = c(0.01, 1, 100)
+a = c(3, 2, 10, 11)
+b = c(5, 4, 1, 6)
+b4 = c(0.01, 1, 100, 10^6)
+digits = c(9, 7, 6, 6)
+
+for (i in 1:4) {
+    c = c(rep(0, 4), b4[i])
+    print(-eff.ini.maxeig.tri(a, b, c, xi = 1, digit.thresh = digits[i])$z)
+}
+</code></pre>
+
+<pre><code>## [1] 0.000278670 0.000278686
+## [1] 0.0244003 0.0245175
+## [1] 0.179806 0.182819
+## [1] 0.191917 0.195145
+</code></pre>
+
+<h4>Example A3 in <a href="http://math0.bnu.edu.cn/%7Echenmf/">Chen (2017)</a></h4>
+
+<pre><code class="r">a = c(0.5142, 0.2115, 0.8442, 0.2347, 0.9837)
+b = c(0.9962, 0.1111, 0.1405, 0.7595, 0.0781)
+c = c(-2.334 - 0.9962, -2.6725 - 0.5142 - 0.1111, -2.263 - 0.2115 - 0.1405, 
+    -2.8457 - 0.8442 - 0.7595, -2.2257 - 0.2347 - 0.0781, -2.1582 - 0.9837)
+
+N = length(a)
+A = tridiag(b, a, -c(b[1] + c[1], a[1:N - 1] + b[2:N] + c[2:N], a[N] + c[N + 
+    1]))
+eff.ini.maxeig.general(A, xi = 1, digit.thresh = 5)$z
+eff.ini.maxeig.general(A, xi = 0.18, digit.thresh = 5)$z
+eff.ini.maxeig.general(A, xi = 0, digit.thresh = 5)$z
+</code></pre>
+
+<pre><code>## [1] &quot;m=4.4494&quot;
+## [1] 3.93158 3.22875 3.26172 3.26751 3.26753
+## [1] &quot;m=4.4494&quot;
+## [1] 3.26234 3.26746 3.26753
+## [1] &quot;m=4.4494&quot;
+## [1] 3.11543 3.19197 3.16652 3.16287 3.16251 3.16247
+</code></pre>
+
+<p>From this example, we can see that when <code>xi=0</code>, it goes into pitfall. So we
+may choose <code>xi</code> does not equal to 0.</p>
+
+<h3>The next to the maximal eigenpair.</h3>
+
+<h3>Tridiagonal matrix case.</h3>
+
+<h4>Example 25</h4>
+
+<pre><code class="r">a = c(1:7)^2
+b = c(1:7)^2
+
+eff.ini.seceig.tri(a, b, xi = 0)$z
+eff.ini.seceig.tri(a, b, xi = 1)$z
+eff.ini.seceig.tri(a, b, xi = 2/5)$z
+</code></pre>
+
+<pre><code>## [1] 0.902633 0.820614 0.820539
+## [1] 0.456343 0.821600 0.820555 0.820539
+## [1] 0.724117 0.820629 0.820539
+</code></pre>
+
+<h4>Example 26</h4>
+
+<pre><code class="r">a = c(3, 2, 10, 11)
+b = c(5, 4, 1, 6)
+
+eff.ini.seceig.tri(a, b, xi = 0, digit.thresh = 5)$z
+eff.ini.seceig.tri(a, b, xi = 1, digit.thresh = 5)$z
+eff.ini.seceig.tri(a, b, xi = 2/5, digit.thresh = 5)$z
+</code></pre>
+
+<pre><code>## [1] 3.84977 3.05196 3.03735 3.03680 3.03674 3.03673
+## [1] 1.72924 3.05715 3.03730 3.03675 3.03673
+## [1] 3.00156 3.03675 3.03673
+</code></pre>
+
+<h3>General matrix case.</h3>
+
+<p>The results of two choices of the initial \(z_0\) are presented in the following.</p>
+
+<h4>Example 27</h4>
+
+<pre><code class="r">Q = matrix(c(-30, 1/5, 11/28, 55/3291, 30, -17, 275/42, 330/1097, 0, 84/5, -20, 
+    588/1097, 0, 0, 1097/84, -2809/3291), 4, 4)
+eff.ini.seceig.general(Q, z0 = &quot;Auto&quot;, digit.thresh = 5)$z
+eff.ini.seceig.general(Q, z0 = &quot;fixed&quot;, digit.thresh = 5)$z
+</code></pre>
+
+<pre><code>## [1] 7.73666 8.15020 8.17129 8.17131
+## [1] 7.34195 8.13214 8.17124 8.17131
+</code></pre>
+
+<h4>Example 28</h4>
+
+<pre><code class="r">Q = matrix(c(-57, 135/59, 243/91, 351/287, 118/27, -52, 590/91, 118/41, 91/9, 
+    637/59, -47, 195/41, 1148/27, 2296/59, 492/13, -62/7), 4, 4)
+eff.ini.seceig.general(Q, z0 = &quot;Auto&quot;, digit.thresh = 4)$z
+eff.ini.seceig.general(Q, z0 = &quot;fixed&quot;, digit.thresh = 4)$z
+</code></pre>
+
+<pre><code>## [1] 47.5318 47.5453 47.5454
+## [1] 38.7143 47.5346 47.5453 47.5454
+</code></pre>
+
+<h1>References</h1>
+
+<p>[1] M. F. Chen. &ldquo;Efficient initials for computing maximal eigenpair&rdquo;. In: <em>Frontiers of Mathematics in China</em> 11.6 (2016), pp. 1379-1418.</p>
+
+<p>[2] M. F. Chen. &ldquo;Global algorithms for maximal eigenpair&rdquo;. In: <em>Frontiers of Mathematics in China</em> 12.5 (2017), pp. 1023-1043.</p>
+
+</body>
+
+</html>
